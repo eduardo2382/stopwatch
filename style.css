@@ -106,6 +106,10 @@ button:hover{
     padding: 10px 15px;
 
     display: none;
+
+    max-height: 150px;
+
+    overflow: scroll;
 }
 
 table{
@@ -117,8 +121,12 @@ thead{
 
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+}
 
+tbody{
+    max-height: 100px;
 
+    overflow: scroll;
 }
 
 td{

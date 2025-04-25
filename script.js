@@ -13,7 +13,7 @@ var turns = []
 
 btnStart.addEventListener('click', startCouting)
 
-btnMarkreturn.addEventListener('click', markTurn)
+btnMarkTurn.addEventListener('click', markTurn)
 
 function startCouting(){
     // Inicia a contagem, adicionando e renderizando os numeros a cada 1s
@@ -72,5 +72,53 @@ function stopCouting(){
     // Desabilita o botao 'Pausar' e remove o evento de click
     btnPause.classList.toggle('disabled')
     btnPause.removeEventListener('click', stopCouting)
+}
+
+function markTurn(){
+    let couting = formatCouting()
+
+    turns.push(couting)
+
+    renderTurns()
+}
+
+function renderTurns(){
+    // Função que percorre o array com as voltas criando e adicionando cada uma delas na area
+
+    let areaTurns = document.querySelector('#areaTurns')
+    areaTurns.style.display = 'block'
+
+    let tbody = document.querySelector('#areaTurns table tbody')
+    tbody.innerHTML = ''
+
+    for (let i = 0; i < turns.length; i++) {
+        tbody.appendChild(createTurnElement(i+1, turns[i]))
+    }
+
+    console.log(areaTurns)
+}
+
+function createTurnElement(position, time){
+    // Função para criar o elemento tr da volta
+
+    let lineTurn = document.createElement('tr')
+
+    let turn = document.createElement('td')
+    turn.innerHTML = position
+
+    let timeTurn = document.createElement('td')
+    timeTurn.innerHTML = time
+
+    let trash = document.createElement('td')
+    let trashIcon = document.createElement('i')
+    trashIcon.classList.add("ri-delete-bin-fill")
+    trash.appendChild(trashIcon)
+    trash.addEventListener('click', deleteTurn(position-1))
+
+    lineTurn.appendChild(turn)
+    lineTurn.appendChild(timeTurn)
+    lineTurn.appendChild(trash)
+
+    return lineTurn
 }
 
