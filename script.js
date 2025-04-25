@@ -86,7 +86,7 @@ function renderTurns(){
     // Função que percorre o array com as voltas criando e adicionando cada uma delas na area
 
     let areaTurns = document.querySelector('#areaTurns')
-    areaTurns.style.display = 'block'
+    areaTurns.style.display = turns.length > 0 ? "block" : "none"
 
     let tbody = document.querySelector('#areaTurns table tbody')
     tbody.innerHTML = ''
@@ -113,7 +113,9 @@ function createTurnElement(position, time){
     let trashIcon = document.createElement('i')
     trashIcon.classList.add("ri-delete-bin-fill")
     trash.appendChild(trashIcon)
-    trash.addEventListener('click', deleteTurn(position-1))
+    trash.addEventListener('click', ()=>{
+        deleteTurn(position-1)
+    })
 
     lineTurn.appendChild(turn)
     lineTurn.appendChild(timeTurn)
@@ -122,3 +124,8 @@ function createTurnElement(position, time){
     return lineTurn
 }
 
+function deleteTurn(position){
+    turns.splice(position, 1)
+
+    renderTurns()
+}
