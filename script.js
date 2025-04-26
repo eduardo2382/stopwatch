@@ -1,7 +1,9 @@
 const btnStart = document.querySelector("#btnStart")
+const btnRestore = document.querySelector('#btnRestore')
 const btnPause = document.querySelector("#btnPause")
-const btnMarkTurn = document.querySelector("#btnMarkTurn")
-const spanCounting = document.querySelector('#counting')
+const spanCounting = document.querySelector('#couting')
+
+// const btnMarkTurn = document.querySelector("#btnMarkTurn")
 
 var second = 0
 var minute = 0
@@ -9,19 +11,23 @@ var hour = 0
 
 var coutingInterval = null
 
-var turns = []
+// var turns = []
 
 btnStart.addEventListener('click', startCouting)
 
-btnMarkTurn.addEventListener('click', markTurn)
+// btnMarkTurn.addEventListener('click', markTurn)
 
 function startCouting(){
     // Inicia a contagem, adicionando e renderizando os numeros a cada 1s
     coutingInterval = setInterval(addCouting, 1000)
 
     // Desabilita o botao 'Iniciar' e remove o evento de click
-    btnStart.classList.toggle('disabled')
+    btnStart.classList.toggle('hidden')
     btnStart.removeEventListener('click', startCouting)
+
+    // Habilita o botão 'Restaurar' e adiciona o evento de click
+    btnRestore.classList.toggle('hidden')
+    btnRestore.addEventListener('click', )
 
     // Habilita o botao 'Pausar' e adiciona o evento de click
     btnPause.classList.toggle('disabled')
@@ -74,58 +80,60 @@ function stopCouting(){
     btnPause.removeEventListener('click', stopCouting)
 }
 
-function markTurn(){
-    let couting = formatCouting()
 
-    turns.push(couting)
+// function markTurn(){
+//     let couting = formatCouting()
 
-    renderTurns()
-}
+//     turns.push(couting)
 
-function renderTurns(){
-    // Função que percorre o array com as voltas criando e adicionando cada uma delas na area
+//     renderTurns()
+// }
 
-    let areaTurns = document.querySelector('#areaTurns')
-    areaTurns.style.display = turns.length > 0 ? "block" : "none"
+// function renderTurns(){
+//     // Função que percorre o array com as voltas criando e adicionando cada uma delas na area
 
-    let tbody = document.querySelector('#areaTurns table tbody')
-    tbody.innerHTML = ''
+//     let areaTurns = document.querySelector('#areaTurns')
+//     areaTurns.style.display = turns.length > 0 ? "block" : "none"
 
-    for (let i = 0; i < turns.length; i++) {
-        tbody.appendChild(createTurnElement(i+1, turns[i]))
-    }
+//     let tbody = document.querySelector('#areaTurns table tbody')
+//     tbody.innerHTML = ''
 
-    console.log(areaTurns)
-}
+//     for (let i = 0; i < turns.length; i++) {
+//         tbody.appendChild(createTurnElement(i+1, turns[i]))
+//     }
 
-function createTurnElement(position, time){
-    // Função para criar o elemento tr da volta
+//     console.log(areaTurns)
+// }
 
-    let lineTurn = document.createElement('tr')
+// function createTurnElement(position, time){
+//     // Função para criar o elemento tr da volta
 
-    let turn = document.createElement('td')
-    turn.innerHTML = position
+//     let lineTurn = document.createElement('tr')
 
-    let timeTurn = document.createElement('td')
-    timeTurn.innerHTML = time
+//     let turn = document.createElement('td')
+//     turn.innerHTML = position
 
-    let trash = document.createElement('td')
-    let trashIcon = document.createElement('i')
-    trashIcon.classList.add("ri-delete-bin-fill")
-    trash.appendChild(trashIcon)
-    trash.addEventListener('click', ()=>{
-        deleteTurn(position-1)
-    })
+//     let timeTurn = document.createElement('td')
+//     timeTurn.innerHTML = time
 
-    lineTurn.appendChild(turn)
-    lineTurn.appendChild(timeTurn)
-    lineTurn.appendChild(trash)
+//     let trash = document.createElement('td')
+//     let trashIcon = document.createElement('i')
+//     trashIcon.classList.add("ri-delete-bin-fill")
+//     trash.appendChild(trashIcon)
+//     trash.addEventListener('click', ()=>{
+//         deleteTurn(position-1)
+//     })
 
-    return lineTurn
-}
+//     lineTurn.appendChild(turn)
+//     lineTurn.appendChild(timeTurn)
+//     lineTurn.appendChild(trash)
 
-function deleteTurn(position){
-    turns.splice(position, 1)
+//     return lineTurn
+// }
 
-    renderTurns()
-}
+// function deleteTurn(position){
+//     turns.splice(position, 1)
+
+//     renderTurns()
+// }
+
