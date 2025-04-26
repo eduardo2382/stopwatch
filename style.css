@@ -10,6 +10,11 @@
         background-color: black;
         color: white;
     }
+
+    main{
+        max-width: 500px;
+        width: 40vw;
+    }
 }
 
 @media screen and (max-width: 1023px) {
@@ -49,9 +54,6 @@ body{
 }
 
 main{
-    max-width: 500px;
-    width: 40vw;
-
     position: fixed;
     top: 50%;
     left: 50%;
