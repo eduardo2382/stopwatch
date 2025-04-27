@@ -26,7 +26,7 @@ function startCouting(){
     btnStart.removeEventListener('click', startCouting)
 
     // Habilita o botão 'Restaurar' e adiciona o evento de click
-    // btnRestore.classList.toggle('hidden')
+    btnRestore.classList.toggle('hidden')
     // btnRestore.addEventListener('click', )
 
     // Habilita o botao 'Pausar' e adiciona o evento de click
