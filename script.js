@@ -22,16 +22,15 @@ function startCouting(){
     coutingInterval = setInterval(addCouting, 1000)
 
     // Desabilita o botao 'Iniciar' e remove o evento de click
-    btnStart.classList.toggle('hidden')
-    btnStart.removeEventListener('click', startCouting)
+    hideButton(btnStart, startCouting)
 
     // Habilita o botão 'Restaurar' e adiciona o evento de click
-    btnRestore.classList.toggle('hidden')
-    // btnRestore.addEventListener('click', )
+    showButton(btnRestore, restoreCouting)
+    btnRestore.addEventListener('click', restoreCouting)
 
     // Habilita o botao 'Pausar' e adiciona o evento de click
     btnPause.classList.toggle('disabled')
-    btnPause.addEventListener('click', stopCouting)
+    showButton(btnPause, stopCouting)
 }
 
 function addCouting(){
@@ -72,68 +71,42 @@ function stopCouting(){
     clearInterval(coutingInterval)
 
     // Habilita o botao 'Iniciar' e adiciona o evento de click
-    btnStart.classList.toggle('disabled')
-    btnStart.addEventListener('click', startCouting)
+    showButton(btnStart, startCouting)
 
     // Desabilita o botao 'Pausar' e remove o evento de click
-    btnPause.classList.toggle('disabled')
-    btnPause.removeEventListener('click', stopCouting)
+    hideButton(btnPause, stopCouting)
+    btnPause.classList.toggle("disabled")
 }
 
+function hideButton(button, func){
+    button.classList.add("hidden")
+    button.removeEventListener('click', func)
+}
 
-// function markTurn(){
-//     let couting = formatCouting()
+function showButton(button, func){
+    button.classList.remove('hidden')
+    button.addEventListener('click', func)
+}
 
-//     turns.push(couting)
+function disabledButton(button, func){
 
-//     renderTurns()
-// }
+}
 
-// function renderTurns(){
-//     // Função que percorre o array com as voltas criando e adicionando cada uma delas na area
+function restoreCouting(){
+    // Zera oks segundos, minutos e horas
+    second = 0
+    minute = 0
+    hour = 0    
 
-//     let areaTurns = document.querySelector('#areaTurns')
-//     areaTurns.style.display = turns.length > 0 ? "block" : "none"
+    // Para a contagem
+    clearInterval(coutingInterval)
 
-//     let tbody = document.querySelector('#areaTurns table tbody')
-//     tbody.innerHTML = ''
+    // Renderizar a contagem zerada na tela
+    renderCouting()
 
-//     for (let i = 0; i < turns.length; i++) {
-//         tbody.appendChild(createTurnElement(i+1, turns[i]))
-//     }
+    hideButton(btnRestore, restoreCouting)
 
-//     console.log(areaTurns)
-// }
-
-// function createTurnElement(position, time){
-//     // Função para criar o elemento tr da volta
-
-//     let lineTurn = document.createElement('tr')
-
-//     let turn = document.createElement('td')
-//     turn.innerHTML = position
-
-//     let timeTurn = document.createElement('td')
-//     timeTurn.innerHTML = time
-
-//     let trash = document.createElement('td')
-//     let trashIcon = document.createElement('i')
-//     trashIcon.classList.add("ri-delete-bin-fill")
-//     trash.appendChild(trashIcon)
-//     trash.addEventListener('click', ()=>{
-//         deleteTurn(position-1)
-//     })
-
-//     lineTurn.appendChild(turn)
-//     lineTurn.appendChild(timeTurn)
-//     lineTurn.appendChild(trash)
-
-//     return lineTurn
-// }
-
-// function deleteTurn(position){
-//     turns.splice(position, 1)
-
-//     renderTurns()
-// }
-
+    //
+    btnPause.classList.toggle('hidden')
+    btnPause.classList.add('disabled')
+}
