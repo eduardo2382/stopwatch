@@ -89,7 +89,8 @@ function showButton(button, func){
 }
 
 function disabledButton(button, func){
-
+    button.classList.toggle('disabled')
+    button.removeEventListener('click', func)
 }
 
 function restoreCouting(){
@@ -104,9 +105,14 @@ function restoreCouting(){
     // Renderizar a contagem zerada na tela
     renderCouting()
 
+    // Mostra o botao 'Restaurar'
     hideButton(btnRestore, restoreCouting)
 
-    //
-    btnPause.classList.toggle('hidden')
-    btnPause.classList.add('disabled')
+    //Mostra o botão 'Iniciar'
+    showButton(btnStart, startCouting)
+
+    //Mostrar o botão 'Pausar', porem desbilitado
+    
+    btnPause.classList.remove('hidden')
+    disabledButton(btnPause, stopCouting)
 }

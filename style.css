@@ -6,25 +6,51 @@
 }
 
 @media screen and (min-width: 1024px){
-    button:hover{
-        background-color: black;
-        color: white;
-    }
 
     main{
         max-width: 500px;
         width: 40vw;
     }
+
+    h1{
+        font-size: 4em;
+    }
+
+    #couting{
+        font-size: 8em;
+    }
+
+    button{
+        width: 49%;
+        font-size: 1.8em;
+    }
 }
 
 @media screen and (max-width: 1023px) {
+    main{
+        width: 80vw;
+        max-width: 450px;
+    }
 
+    h1{
+        font-size: 3.5em;
+    }
+
+    #couting{
+        font-size: 7em;
+    }
+
+    button{
+        width: 49%;
+        font-size: 1.8em;
+    }
 }
 
 @media screen and (max-width: 767px) {
     main{
         width: 80vw;
-        max-width: 400px;
+        max-width: 300px;
+        min-width: 270px;
     }
 
     h1{
@@ -114,6 +140,11 @@ button{
     cursor: pointer;
 
     transition: .2s;
+}
+
+button:active{
+    background-color: black;
+    color: white;
 }
 
 .disabled{
