@@ -43,7 +43,7 @@ Depois, abra o arquivo `index.html` no navegador (dois cliques nele já funciona
 ├── index.html
 ├── style.css
 ├── script.js
-└── preview.png
+└── images/preview.png
 ```
 
 ## 🗺️ Próximos passos
